@@ -1,4 +1,4 @@
-name: CI
+name: Hexo CI
 on:
   push:
     branches:
@@ -31,6 +31,7 @@ jobs:
           npm install hexo-cli -g
           npm install 
           npm install --save hexo-deployer-git
+      
       - name: Hexo deploy
         run: |
           hexo clean
