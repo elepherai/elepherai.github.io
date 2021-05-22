@@ -17,17 +17,21 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14'
-
-      - name: Set Env
-        env: 
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}  
+          
+      - name: Setup hexo
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_PRI }}
         run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "elepher.ai@gmail.com"
           git config --global user.name "elepher ai"
-          sed -i "s/GITHUB_ACCESS_TOKEN/$GITHUB_ACCESS_TOKEN/g" ./_config.fluid.yml
-
-      - name: Hexo
+          npm install hexo-cli -g
+          npm install
+      - name: Hexo deploy
         run: |
-          npm i -g hexo-cli
-          npm i
-          hexo clean && hexo g && hexo d
+          hexo clean
+          hexo g
+          hexo d
