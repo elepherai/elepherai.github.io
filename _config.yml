@@ -103,7 +103,7 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:elepherai/elepherai.github.io.git
+  repo: https://GITHUB_ACCESS_TOKEN@github.com/elepherai/elepherai.github.io.git
   branch: master
   name: elepherai
   email: elepher.ai@gmail.com
