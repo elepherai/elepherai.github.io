@@ -29,7 +29,8 @@ jobs:
           git config --global user.email "elepher.ai@gmail.com"
           git config --global user.name "elepher ai"
           npm install hexo-cli -g
-          npm install
+          npm install 
+          npm install --save hexo-deployer-git
       - name: Hexo deploy
         run: |
           hexo clean
